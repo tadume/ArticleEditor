@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="bean.articles.*" %>
+<jsp:useBean id="idto" class="bean.articles.IndexDTO" scope="request"></jsp:useBean>
+<jsp:useBean id="msg" class="java.lang.String" scope="request"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,7 @@
 </head>
 <body>
 	<h1>記事一覧画面</h1>
+	<h2><%= msg %></h2>
 	<button type="button">サインアップ</button>
 	<button type="button">ログイン</button>
 	
@@ -20,11 +24,16 @@
     		</tr>
   		</thead>
   		<tbody>
+  			<% 
+  				for(int i = 0; i < idto.size(); i++){ 
+  					IndexBean ib = idto.get(i); 
+			%>
   			<tr>
-  				<td>title</td>
-  				<td>text</td>
+  				<td><%= ib.getTitle() %></td>
+  				<td><%= ib.getText() %></td>
   				<td><button type="button">詳細</button></td>
   			</tr>
+  			<% } %>
   		</tbody>
 	</table>
 </body>
