@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <%@page import="bean.articles.*" %>
 <jsp:useBean id="idto" class="bean.articles.IndexDTO" scope="request"></jsp:useBean>
 <jsp:useBean id="msg" class="java.lang.String" scope="request"></jsp:useBean>
@@ -31,7 +32,13 @@
   			<tr>
   				<td><%= ib.getTitle() %></td>
   				<td><%= ib.getText() %></td>
-  				<td><button type="button">詳細</button></td>
+  				<td>
+  					<% request.setAttribute("title", ib.getTitle()); %>
+  					<% request.setAttribute("text", ib.getText()); %>
+  					<%-- <% RequestDispatcher rd = null; %>
+  					<% rd = request.getRequestDispatcher("/ArticleWeb/articles/show.jsp"); %> --%>
+  					<a href="/ArticleWeb/articles/show.jsp">詳細</a>
+  				</td>
   			</tr>
   			<% } %>
   		</tbody>
